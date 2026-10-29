@@ -56,3 +56,7 @@ Subtitles and preview thumbnails of the title being watched are sent to the Plot
 ---
 
 Plot Only is an independent project and is not affiliated with or endorsed by Netflix.
+
+## License
+
+MIT — see [LICENSE](LICENSE).

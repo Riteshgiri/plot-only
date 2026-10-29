@@ -1,0 +1,152 @@
+#plot-only-root {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 2147483647;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  pointer-events: none;
+  font-family: "Netflix Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+#plot-only-root.po-hidden { display: none; }
+
+#plot-only-root .po-pill {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 13px 6px 6px;
+  border-radius: 999px;
+  background: rgba(20, 20, 20, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #fff;
+  font-size: 13px;
+  line-height: 1;
+  opacity: 0.45;
+  transition: opacity 0.2s;
+}
+#plot-only-root .po-pill:hover { opacity: 1; }
+
+#plot-only-root .po-toggle {
+  all: unset;
+  position: relative;
+  flex: none;
+  width: 34px;
+  height: 20px;
+  border-radius: 999px;
+  background: #555;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+#plot-only-root .po-toggle::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  transition: left 0.15s;
+}
+#plot-only-root .po-toggle.on { background: #ffb020; }
+#plot-only-root .po-toggle.on::after { left: 16px; }
+
+#plot-only-root .po-status { white-space: nowrap; }
+#plot-only-root .po-status.err {
+  cursor: pointer;
+  color: #ffb4b4;
+  text-decoration: underline dotted;
+}
+
+#plot-only-root .po-toast {
+  max-width: 380px;
+  padding: 9px 14px;
+  border-radius: 8px;
+  background: rgba(20, 20, 20, 0.9);
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.35;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.25s, transform 0.25s;
+}
+#plot-only-root .po-toast.show {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- Scene panel ---- */
+#plot-only-root .po-status.po-clickable { cursor: pointer; }
+#plot-only-root.po-open .po-pill { opacity: 1; }
+
+#plot-only-root .po-panel {
+  display: none;
+  pointer-events: auto;
+  width: 430px;
+  max-width: calc(100vw - 36px);
+  padding: 14px 14px 10px;
+  border-radius: 12px;
+  background: rgba(20, 20, 20, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 13px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+#plot-only-root.po-open .po-panel { display: block; }
+
+#plot-only-root .po-head { margin-bottom: 10px; }
+#plot-only-root .po-title { font-weight: 700; font-size: 15px; }
+#plot-only-root .po-sub { color: #aaa; font-size: 12px; margin-top: 2px; }
+
+#plot-only-root .po-bar {
+  position: relative;
+  height: 10px;
+  border-radius: 5px;
+  background: #ffb020; /* parts you watch */
+  overflow: hidden;
+}
+#plot-only-root .po-seg { position: absolute; top: 0; bottom: 0; background: #4a4a4a; }
+#plot-only-root .po-seg.po-watched { background: #7a6a4a; }
+#plot-only-root .po-now { position: absolute; top: 0; bottom: 0; width: 2px; background: #fff; z-index: 1; }
+
+#plot-only-root .po-legend { display: flex; gap: 14px; margin: 7px 0 10px; color: #aaa; font-size: 11px; }
+#plot-only-root .po-key::before { content: ""; display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+#plot-only-root .po-key-watch::before { background: #ffb020; }
+#plot-only-root .po-key-skip::before { background: #4a4a4a; }
+#plot-only-root .po-key-now::before { width: 2px; background: #fff; }
+
+#plot-only-root .po-list { max-height: 320px; overflow-y: auto; margin: 0 -6px; }
+#plot-only-root .po-row {
+  display: grid;
+  grid-template-columns: 62px 1fr auto;
+  gap: 10px;
+  align-items: start;
+  padding: 7px 6px;
+  border-radius: 6px;
+  border-left: 3px solid transparent;
+}
+#plot-only-root .po-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.04em; text-align: center;
+  padding: 3px 0; border-radius: 4px; margin-top: 1px;
+}
+#plot-only-root .po-keep .po-tag { background: rgba(255, 176, 32, 0.18); color: #ffc861; }
+#plot-only-root .po-skip .po-tag { background: #333; color: #bbb; }
+#plot-only-root .po-anyway .po-tag { background: rgba(120, 170, 255, 0.18); color: #9cc1ff; }
+
+#plot-only-root .po-skip, #plot-only-root .po-anyway { cursor: pointer; }
+#plot-only-root .po-skip:hover, #plot-only-root .po-anyway:hover { background: rgba(255, 255, 255, 0.07); }
+#plot-only-root .po-skip .po-label { color: #aaa; text-decoration: line-through; text-decoration-color: rgba(255,255,255,0.35); }
+
+#plot-only-root .po-label { color: #fff; }
+#plot-only-root .po-why { color: #888; font-size: 12px; margin-top: 2px; }
+#plot-only-root .po-meta { text-align: right; white-space: nowrap; }
+#plot-only-root .po-times { display: block; color: #ccc; font-variant-numeric: tabular-nums; }
+#plot-only-root .po-dur { display: block; color: #777; font-size: 11px; font-variant-numeric: tabular-nums; }
+
+#plot-only-root .po-past { opacity: 0.45; }
+#plot-only-root .po-current { background: rgba(255, 255, 255, 0.08); border-left-color: #fff; opacity: 1; }
+
+#plot-only-root .po-hint { margin-top: 8px; color: #888; font-size: 11px; }

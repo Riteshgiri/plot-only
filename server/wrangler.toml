@@ -1,0 +1,12 @@
+name = "plot-only-api"
+main = "src/worker.js"
+compatibility_date = "2026-06-01"
+
+[vars]
+MODEL = "claude-sonnet-5-5"
+DAILY_NEW_LIMIT = "200"     # max new Claude calls per day, everyone combined: worst case ~$10/day
+PER_IP_DAILY_LIMIT = "40"   # max new Claude calls per person per day (a 10-episode season uses ~11)
+
+[[kv_namespaces]]
+binding = "PLANS"
+id = "REPLACE_WITH_KV_ID"
